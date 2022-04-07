@@ -1,4 +1,4 @@
-GRAFY
+GRAPHY
 - Micaela Gordillo
 - Alejandra Pacheco
 - Naomi Tacachira
