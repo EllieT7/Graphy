@@ -1,0 +1,38 @@
+/*Quitar los estilos generales*/
+* {
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+header nav {
+    background: #82dcf2;
+}
+header nav ul {
+    list-style: none;
+    overflow: hidden;
+}
+header nav ul .izquierda{
+    float: left; 
+}
+header nav ul .derecha{
+    float: right;
+}
+header nav ul li a {
+    display: block;
+    padding: 20px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+}
+header nav ul li a:hover {
+    background: #6dbccf;
+}
+.menu-fixed {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    width: 100%;
+}
