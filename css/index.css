@@ -6,6 +6,7 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
+/*Menu superior*/
 header nav {
     background: #82dcf2;
 }
@@ -35,4 +36,124 @@ header nav ul li a:hover {
     z-index: 1000;
     top: 0;
     width: 100%;
+}
+/*Cuerpo de la página*/
+#contenedor {
+    font-family: 'Urbanist', sans-serif;
+    margin: 10%;
+    margin-top: 8%;
+    display: grid;
+    gap: 3% 5%;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 500px [Line1] auto [Line2] 300px [Line3] 300px [Line4] 300px [Line5];
+    grid-template-areas: "titulo gift"
+                         "linea linea"
+                         "imgConexion descripcionConexion"
+                         "descripcionOsito imgOsito"
+                         "imgDisquete descripcionDisquete";
+}
+h3 {
+    color:#c0c0c0;
+    font-size: 30px;
+    margin-bottom: 3%;
+}
+p {
+    color:#9c9c9c;
+}
+/*Parte 1*/
+.logo{
+    grid-area: titulo;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.nombre{
+    font-family: "Grand Hotel", cursive;
+    font-size: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5%;
+}
+.frase {
+    text-align: center;
+    font-size: 20px;
+    color:#c0c0c0;
+    margin-bottom: 8%;
+}
+.boton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.boton button {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    color: white;
+    background-color: #82dcf2;
+    border-width: 0px;
+    width: 180px;
+    padding: 3% 5%;
+    border-radius: 3px;
+}
+.boton button:hover{
+    background-color: #6dbccf;
+}
+.gift {
+    grid-area: gift;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+.gift img {
+    width: 80%;
+}
+.linea {
+    grid-area: linea;
+}
+/*Parte 2*/
+.imagenConexion {
+    grid-area: imgConexion;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.imagenConexion img {
+    width: 70%;
+}
+.contenido1 {
+    grid-area: descripcionConexion;
+    display: flex;
+    align-items: center;
+}
+/*Parte 3*/
+.imagenOsito {
+    grid-area: imgOsito;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.imagenOsito img {
+    width: 60%;
+}
+.contenido2 {
+    grid-area: descripcionOsito;
+    display: flex;
+    align-items: center;
+}
+/*Parte 4*/
+.imagenDisquete {
+    grid-area: imgDisquete;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.imagenDisquete img {
+    width: 60%;
+}
+.contenido3 {
+    grid-area: descripcionDisquete;
+    display: flex;
+    align-items: center;
 }
