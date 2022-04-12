@@ -1,0 +1,85 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+html, body {
+    height:100%;
+    display: flex;
+    flex-direction: column;
+}
+.graphy {
+    background: #82dcf2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Grand Hotel", cursive;
+    font-size: 50px;
+    color: white;
+}
+.graphy img {
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+h1 {
+    color:#616161;
+    font-size: 300%;
+    font-family: 'Urbanist',sans-serif;
+    font-weight: bold;
+}
+p {
+    font-size: 90%;
+}
+#cuerpo {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#contenido {
+    font-family: 'IBM Plex Sans', sans-serif;
+    margin-left: 10%;
+    margin-right: 14%;
+    display: grid;
+    gap: 0% 1%;
+    grid-template-columns: 7% 92%;
+    grid-template-areas: "atras titulo"
+                         "boton descripcion";
+}
+.boton {
+    grid-area: atras;
+}
+.botonAtras {
+    position:flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    border-width: 0px;
+    background-color: #82dcf2;
+    outline: none !important;
+}
+.botonAtras:hover {
+    background: #6dbccf;
+}
+.botonAtras img {
+    width: 50%;
+}
+.titulo {
+    grid-area: titulo;
+}
+#descripcion {
+    grid-area: descripcion;
+    display: grid;
+    gap: 1% 2%;
+    grid-template-columns: 49% 49%;
+}
+.texto, .imagen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.imagen img {
+    width: 100%;
+}
