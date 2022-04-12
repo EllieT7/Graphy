@@ -98,7 +98,9 @@ p {
     border-radius: 3px;
 }
 .boton button:hover{
-    background-color: #6dbccf;
+    background-color: #6ecce4;
+    transform: scale(1.02);
+    transition: 0.2s ease-in-out;
 }
 .gift {
     grid-area: gift;
