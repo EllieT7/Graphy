@@ -7,20 +7,22 @@
     box-sizing: border-box;
 }
 /*Menu superior*/
-header nav {
+.menu_superior {
     background: #82dcf2;
+    display: block;
 }
-header nav ul {
+.menu_superior ul {
     list-style: none;
     overflow: hidden;
+    margin-bottom: 0 !important;
 }
-header nav ul .izquierda{
+.izquierda{
     float: left; 
 }
-header nav ul .derecha{
+.derecha{
     float: right;
 }
-header nav ul li a {
+.menu_superior ul li a {
     display: block;
     padding: 20px;
     color: white;
@@ -28,24 +30,146 @@ header nav ul li a {
     font-weight: bold;
     text-decoration: none;
 }
-header nav ul li a:hover {
+.open {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-width: 0px !important;
+    background-color: #82dcf2;
+    outline: none !important;
+}
+.menu_superior ul li a:hover, .open:hover {
     background: #6dbccf;
 }
-.menu-fixed {
+.menu_superior {
     position: fixed;
     z-index: 1000;
     top: 0;
     width: 100%;
 }
+/*Menu herramientas*/
+.menu_superior ul li ul {
+    display: none;
+    position: absolute;
+    background: #82dcf2;
+}
+.menu_superior ul li:hover > ul{
+    display: block;
+}
+/*Contactanos*/
+#contactos{
+    max-height: 550px;
+    overflow: auto;
+}
+/*cartas*/
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+.slide-container {
+    margin: auto;
+    text-align: center;
+}
+.wrapper {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.wrapper:focus {
+    outline: 0;
+}
+.p-card {
+    background: white;
+    width: 300px;
+    display: inline-block;
+    margin: auto;
+    border-radius: 19px;
+    position: relative;
+    text-align: center;
+    box-shadow: -1px 15px 30px -12px black;
+    z-index: 9999;
+}
+.card__image {
+    position: relative;
+    height: 230px;
+    margin-bottom: 35px;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+}
+.card__image--person {
+    background: url('https://concepto.de/wp-content/uploads/2014/08/programacion-2-e1551291144973.jpg');
+    background-size: cover;
+}
+.card__image--person img {
+    height: 230px;
+}
+.card__title {
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 3px;
+}
+.card__title--person {
+    color: #4facff;
+}
+.card__name {
+    font-size: 26px;
+    color: black;
+    font-weight: 900;
+    margin-bottom: 5px;
+}
+.card__description {
+    padding: 20px;
+    margin-bottom: 10px;
+}
+.card__contact--person {
+    background: #4facff;
+}
+.card__contact--person .one-third {
+    border-right: 1px solid #309eff;
+}
+.card__contact {
+    color: white;
+    font-weight: 700;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+}
+.card__contact .one-third {
+    width: 33%;
+    float: left;
+    padding: 20px 15px;
+    align-items: center;
+}
+.card__contact .one-third img{
+    height: 90%;
+    width: 90%;
+}
+.card__contact .no-border {
+    border-right: none;
+}  
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
 /*Cuerpo de la página*/
+body {
+    background-image: url("../resources/inicio/fondo.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
 #contenedor {
     font-family: 'Urbanist', sans-serif;
     margin: 10%;
     margin-top: 8%;
     display: grid;
-    gap: 3% 5%;
+    gap: 1% 5%;
     grid-template-columns: 50% 50%;
-    grid-template-rows: 500px [Line1] auto [Line2] 300px [Line3] 300px [Line4] 300px [Line5];
+    grid-template-rows: repeat(5, auto);
     grid-template-areas: "titulo gift"
                          "linea linea"
                          "imgConexion descripcionConexion"
@@ -67,19 +191,14 @@ p {
     align-items: center;
     justify-content: center;
 }
-.nombre{
-    font-family: "Grand Hotel", cursive;
-    font-size: 140px;
+.imagen_titulo{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 5%;
+    background-color: white;
 }
-.frase {
-    text-align: center;
-    font-size: 20px;
-    color:#c0c0c0;
-    margin-bottom: 8%;
+.imagen_titulo img{
+    width: 90%;
 }
 .boton {
     display: flex;
@@ -94,8 +213,8 @@ p {
     background-color: #82dcf2;
     border-width: 0px;
     width: 180px;
-    padding: 3% 5%;
-    border-radius: 3px;
+    padding: 2%;
+    border-radius: 4px;
 }
 .boton button:hover{
     background-color: #6ecce4;
