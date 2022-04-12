@@ -18,7 +18,7 @@
 }
 h1 {
     color:#616161;
-    font-size: 250%;
+    font-size: 3.5vw;
     font-family: 'Urbanist',sans-serif;
     margin-bottom: 0 !important;
 }
@@ -38,16 +38,13 @@ h1 {
 }
 .boton {
     grid-area: atras;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 .botonAtras {
     position:flex;
     align-items: center;
     justify-content: center;
-    width: 60px;
-    height: 60px;
+    width: 5vw;
+    height: 5vw;
     border-radius: 100%;
     border-width: 0px;
     background-color: #82dcf2;
@@ -66,6 +63,7 @@ h1 {
 }
 .descripcion {
     grid-area: descripcion;
+    font-size: 1.3vw;
 }
 .manuales {
     grid-area: cajitas;
@@ -80,7 +78,7 @@ h1 {
 }
 h5 {
     margin-bottom: 0 !important;
-    font-size: 18px;
+    font-size: 1.3vw;
 }
 .invisible {
     border: 0;

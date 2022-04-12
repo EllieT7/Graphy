@@ -22,12 +22,13 @@ html, body {
 }
 h1 {
     color:#616161;
-    font-size: 300%;
+    font-size: 3.5vw;
     font-family: 'Urbanist',sans-serif;
     font-weight: bold;
 }
 p {
-    font-size: 90%;
+    font-size: 1.3vw;
+    color:#838383;
 }
 #cuerpo {
     height: 100%;
@@ -53,8 +54,8 @@ p {
     position:flex;
     align-items: center;
     justify-content: center;
-    width: 60px;
-    height: 60px;
+    width: 5vw;
+    height: 5vw;
     border-radius: 100%;
     border-width: 0px;
     background-color: #82dcf2;
