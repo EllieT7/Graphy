@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Graphy</title>
-    <link rel="stylesheet" href="../css/index.css">
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <!-- Icono -->
     <link rel="shortcut icon" type="image/x-icon" href="../resources/modelado.ico">
@@ -13,30 +12,45 @@
     <link href="https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@500&display=swap" rel="stylesheet">
+    <!--Boostrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--css-->
+    <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
-    <header>
-        <!--Menú pegajoso - superior-->
-        <nav class="menu-fixed">
-            <ul>
-                <li class="izquierda"><a href="#">¿Qué es Graphy?</a></li>
-                <li class="izquierda"><a href="#">Herramientas</a></li>
-                <li class="izquierda"><a href="#">Extras</a></li>
-                <li class="derecha"><a href="#">Manuales</a></li>
-                <li class="derecha"><a href="#">Contáctanos</a></li>
-            </ul>
-        </nav>
-    </header>
+    <!--Menú pegajoso - superior-->
+    <div class="menu_superior">
+        <ul>
+            <li class="izquierda"><a href="">¿Qué es Graphy?</a></li>
+            <li class="izquierda"><a href="">Herramientas</a>
+                <ul>
+                    <li><a href="">Grafos</a></li>
+                    <li><a href="">Algoritmo de Johnson</a></li>
+                    <li><a href="">Algoritmo de Asignación</a></li>
+                    <li><a href="">Algoritmo de Norhtwest</a></li>
+                </ul>
+            </li>
+            <li class="izquierda"><a href="">Extras</a>
+                <ul>
+                    <li><a href="">Algoritmo de ordenamiento</a></li>
+                    <li><a href="">Árboles binarios</a></li>
+                </ul>
+            </li>
+            <li class="derecha"><a href="">Manuales</a></li>
+            <li class="derecha">
+                <button type="submit" class="open" data-toggle="modal" data-target="#contactanos" onclick="">Contáctanos</button>
+            </li>
+        </ul>
+    </div>
     <!--Cuerpo de la página-->
     <div id="contenedor">
         <!--Parte 1-->
         <div class="logo">
             <div>
-                <div class="nombre">
-                    <img src="../resources/inicio/iconoGraphy.png" alt="IconoGraphy" width="150px">Graphy
-                </div>
-                <div class="frase">
-                    ------------------ Tu graficador ------------------
+                <div class="imagen_titulo">
+                    <img src="../resources/inicio/graphy.png" alt="graphy">
                 </div>
                 <div class="boton">
                     <button>Empezar</button>
@@ -85,6 +99,28 @@
         <!--Linea de division-->
         <div class="linea">
             <hr> 
+        </div>
+    </div>
+
+    <!-- Modal - ventalla emergente - contactanos -->
+    <div class="modal fade" id="contactanos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Contáctanos</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="contactos" class="modal-body">
+                    <div class="slide-container" id="informacionContactanos">
+                        <!--Lista de integrantes-->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
         </div>
     </div>
 </body>
