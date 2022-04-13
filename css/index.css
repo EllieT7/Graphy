@@ -170,11 +170,18 @@ body {
     gap: 1% 5%;
     grid-template-columns: 50% 50%;
     grid-template-rows: repeat(5, auto);
-    grid-template-areas: "titulo gift"
+    grid-template-areas: "contenedor-arriba contenedor-arriba"
                          "linea linea"
                          "imgConexion descripcionConexion"
                          "descripcionOsito imgOsito"
                          "imgDisquete descripcionDisquete";
+}
+.contenedor-arriba{
+    grid-area: contenedor-arriba;
+    display: flex;
+    background-image: url("../resources/inicio/fondoBlanco.png");
+    background-size: 110%;
+    background-repeat: no-repeat; 
 }
 h3 {
     color:#c0c0c0;
@@ -195,10 +202,10 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: white;
+    /* background-color: white; */
 }
 .imagen_titulo img{
-    width: 90%;
+    width: 60%;
 }
 .boton {
     display: flex;
@@ -213,7 +220,7 @@ p {
     background-color: #82dcf2;
     border-width: 0px;
     width: 180px;
-    padding: 2%;
+    padding: 1%;
     border-radius: 4px;
 }
 .boton button:hover{
@@ -228,7 +235,7 @@ p {
     justify-content: left;
 }
 .gift img {
-    width: 80%;
+    width: 90%;
 }
 .linea {
     grid-area: linea;
@@ -277,4 +284,40 @@ p {
     grid-area: descripcionDisquete;
     display: flex;
     align-items: center;
+}
+ 
+/* Cajitas */
+.row-cajitas{
+    display: flex;
+}
+.contenedor-cajitas{
+    padding: 100px;
+    margin-top: -60px;
+}
+.card:hover {
+    transition: 0.2s ease-in-out;
+    transform: scale(1.02);
+}
+.card:hover img {
+    filter: brightness(95%);
+}
+.card:hover h5 {
+    color: #50bad4;
+}
+.btn-primary{
+    background-color: #92E3A9;
+    border: solid 0px;
+}
+.btn-primary:hover{
+    background-color: #7dd395;
+    border: solid 0px;
+}
+.card-title{
+    color: #838282;
+}
+.card{
+    margin: 0 2% 10% 0;
+}
+a:link, a:visited, a:active {
+    text-decoration:none;
 }
