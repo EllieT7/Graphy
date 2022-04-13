@@ -1,0 +1,43 @@
+{
+  "name": "graphy",
+  "version": "1.0.0",
+  "description": "GRAPHY\r - Micaela Gordillo\r - Alejandra Pacheco\r - Naomi Tacachira\r - Carla Valencia",
+  "main": "index.js",
+  "dependencies": {
+    "@jsplumb/browser-ui": "^5.5.5",
+    "atob": "^2.1.2",
+    "base64-arraybuffer": "^1.0.2",
+    "btoa": "^1.2.1",
+    "canvg": "^3.0.10",
+    "core-js": "^3.21.1",
+    "css-line-break": "^2.1.0",
+    "dompurify": "^2.3.6",
+    "es6-promise": "^4.2.8",
+    "fflate": "^0.4.8",
+    "html2canvas": "^1.4.1",
+    "html2pdf.js": "^0.10.1",
+    "jspdf": "^2.5.1",
+    "jsplumb": "^2.15.6",
+    "performance-now": "^2.1.0",
+    "raf": "^3.4.1",
+    "regenerator-runtime": "^0.13.9",
+    "rgbcolor": "^1.0.1",
+    "stackblur-canvas": "^2.5.0",
+    "svg-pathdata": "^6.0.3",
+    "text-segmentation": "^1.0.3",
+    "utrie": "^1.0.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EllieT7/Graphy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EllieT7/Graphy/issues"
+  },
+  "homepage": "https://github.com/EllieT7/Graphy#readme"
+}
