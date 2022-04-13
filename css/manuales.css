@@ -1,0 +1,85 @@
+/*Quitar los estilos generales*/
+* {
+    padding: 0;
+    margin: 0;
+}
+.graphy {
+    background: #82dcf2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Grand Hotel", cursive;
+    font-size: 50px;
+    color: white;
+}
+.graphy img {
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+h1 {
+    color:#616161;
+    font-size: 3.5vw;
+    font-family: 'Urbanist',sans-serif;
+    margin-bottom: 0 !important;
+}
+#contenido {
+    font-family: 'IBM Plex Sans', sans-serif;
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 16%;
+    margin-bottom: 5%;
+    display: grid;
+    gap: 1% 2%;
+    grid-template-columns: 7% 91%;
+    grid-template-rows: repeat(3, auto);
+    grid-template-areas: "atras titulo"
+                         "boton descripcion"
+                         "boton cajitas";
+}
+.boton {
+    grid-area: atras;
+}
+.botonAtras {
+    position:flex;
+    align-items: center;
+    justify-content: center;
+    width: 5vw;
+    height: 5vw;
+    border-radius: 100%;
+    border-width: 0px;
+    background-color: #82dcf2;
+    outline: none !important;
+}
+.botonAtras:hover {
+    background: #6dbccf;
+}
+.botonAtras img {
+    width: 50%;
+}
+.titulo {
+    grid-area: titulo;
+    display: flex;
+    align-items: center;
+}
+.descripcion {
+    grid-area: descripcion;
+    font-size: 1.3vw;
+}
+.manuales {
+    grid-area: cajitas;
+    margin-top: 3%;
+}
+.card-deck {
+    margin-bottom: 3%;
+}
+.card-body {
+    padding-top: 2% !important;
+    padding-bottom: 2% !important;
+}
+h5 {
+    margin-bottom: 0 !important;
+    font-size: 1.3vw;
+}
+.invisible {
+    border: 0;
+}

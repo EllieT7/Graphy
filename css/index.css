@@ -222,6 +222,7 @@ p {
     width: 180px;
     padding: 1%;
     border-radius: 4px;
+    outline: none;
 }
 .boton button:hover{
     background-color: #6ecce4;
