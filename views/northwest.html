@@ -5,7 +5,7 @@
 <!--Dentro de la etiqueta <head> va informacion que mayormente el usuario no puede ver.-->
 <head>
   <meta charset="UTF-8">
-  <title>Grafos - Algoritmo de asignación</title>
+  <title>Grafos - Algoritmo NorthWest</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,7 +19,7 @@
 
   <!--La siguiente etiqueta permite relacionar el archivo htlm con el css-->
   <link href="./cardsStyle.sass">
-  <link rel="stylesheet" href="../css/asignacion.css">
+  <link rel="stylesheet" href="../css/northwest.css">
 
   <!--La siguiente etiqueta permite relacionar el archivo htlm con la libreria bootstrap-->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
@@ -55,7 +55,7 @@
     <li style="position: absolute; top: 15px; left: 20px; width: 50px;" id="casita"><a href="./index.html">
       <img style="width: 40px;" src="../resources/images/casita.png" alt="atras">
     </a></li>
-    <li class="nav-item" id="nombreEmpresa"><img src="..\resources\images\modelado.png" alt="logo_graphy"
+    <li id="nombreEmpresa"><img src="../resources/images/modelado.png" alt="logo_graphy"
         style="height: 50px;">Graphy</li>
   </ul>
 </nav>
@@ -72,7 +72,7 @@
         <div id="toolbox" class="justify-content-center">
           <h3><strong>Elementos</strong></h3>
           <br><br>
-          <ul style="list-style: none; margin-left: -30%;">
+          <ul style="font-size: 1.2vw; list-style: none; margin-left: -20%;">
             <li>🟦 Para entrada de enlaces</li>
             <br>
             <li>🔵 Para salida de enlaces</li>
@@ -84,14 +84,15 @@
           </div>
           <div class="control new destino"  id="cajita">
             <!-- Estacion vacunas -->
-            <img src="../resources/images/nodo.png" alt="estacion" width="45px" height="45px">
+            <img src="../resources/images/destino.png" alt="estacion" width="45px" height="45px">
             <h6>Destino</h6>
           </div>
+
           <div>
             <div class="flecha"><img src="../resources/images/red_arrow.png" width="30px">Sin atributo</div>
             <div class="flecha"><img src="../resources/images/green_arrow.png" width="30px">Con atributo</div>
           </div>
-      </div>
+        </div>
       </div>
 
       <!-- Div para el diagrama -->
@@ -99,7 +100,9 @@
         <div id="habilitar-div" class="habilitar">
           <button id="botonMovilidad" class="btn btn-success" onclick="drag()">Habilitar edición</button>
         </div>
-        <div id="diagram" style="height: 90vh; position: relative">
+        <div id="diagram" style="height: 80vh !important; position: relative">
+          <!--Cajitas -- holguras-->
+          <div id="holgurasCuadros"></div>
         </div>
       </div>
     </div>
@@ -114,9 +117,10 @@
     </div>
   </div>
   <script>
-    var contador = 1;
+    var primerNodoId = "";
     var contadorOrigen = 1;
     var contadorDestino = 1;
+    var cantidadDeNodos = 0;
     // https://stackoverflow.com/a/2117523
     function uuidv4() {
       return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -135,20 +139,13 @@
           connector: "Straight", //Bezier, Flowchart, Straight, StateMachine
           overlays: [["Arrow", { location: 0.9, width: 20, length: 20, foldback: 0.9 }],
           ["Label", { label: "", labelLocation: 0.5 }]]
-        }//----------------------------------------------------------------------------------//
+        }
         , "red-connection": {
           paintStyle: { stroke: "red", strokeWidth: 2 },
           hoverPaintStyle: { stroke: "#E43B45", strokeWidth: 3 },
           connector: "Straight", //Bezier, Flowchart, Straight, StateMachine
           overlays: [["Arrow", { location: 0.9, width: 20, length: 20, foldback: 0.9 }],
           ["Label", { label: "${label}", location: 0.25 }]]
-        }
-        , "rose-connection": {
-          paintStyle: { stroke: "#E30052", strokeWidth: 2 },
-          hoverPaintStyle: { stroke: "#FE4164", strokeWidth: 3 },
-          connector: "Straight", //Bezier, Flowchart, Straight, StateMachine
-          overlays: [["Arrow", { location: 0.9, width: 20, length: 20, foldback: 0.9 }],
-          ["Label", { label: "", location: 0.25 }]]
         }
       });
 
@@ -197,6 +194,7 @@
         nodo = window.selectedControl;
         instance.remove(nodo);
         eliminarNodo(nodo);
+
       });
 
       // Para poder arrastrar los elementos al momento de clonarlos
@@ -206,7 +204,6 @@
         appendTo: "#diagram"
       });
 
-      // Hacer que al momento de clonar un elemento se cree y se pueda arrastrar.
       // Hacer que al momento de clonar un elemento se cree y se pueda arrastrar.
       $("#diagram").droppable({
         drop: function (event, ui) {
@@ -219,6 +216,7 @@
           if (origen){
             document.getElementById(id).getElementsByTagName('h6')[0].innerText += (" "+contadorOrigen);
           contadorOrigen++;
+          cantidadDeNodos++;
           instance.draggable(id, { containment: true });
             // Punto inicial del clone.
             instance.addEndpoint(id, {
@@ -232,6 +230,7 @@
           else{
             document.getElementById(id).getElementsByTagName('h6')[0].innerText += (" "+contadorDestino);
           contadorDestino++;
+          cantidadDeNodos++;
           instance.draggable(id, { containment: true });
             // Punto final del clone.
             instance.addEndpoint(id, {
@@ -281,6 +280,11 @@
       instance.draggable($('.control'));
       agregarEndPoints();
       generarConexiones();
+      //Nuevo
+      agregarOfertas();
+      agregarDemandas();
+      mostrarMatriz();
+      //
       eliminarBloqueComentario();
       document.querySelector("#habilitar-div").classList.remove('habilitar-activo');
       var nodosOrigen = document.getElementsByClassName('origen');
@@ -301,6 +305,34 @@
     }
     function eliminarBloqueComentario(){
       $(".contenedor-conexiones").remove();
+      $(".contenedor-ofertas").remove();
+      $(".contenedor-demandas").remove();
+      
+    }
+
+    function agregarOfertas(){
+      var contenido = document.getElementsByClassName('contenedor-ofertas')[0].innerHTML;
+      var cadena = contenido.substring(contenido.indexOf('id:'),contenido.indexOf("|-->"));
+      var elementos = cadena.split('|');
+      for(n=0;n<elementos.length;n++){
+        var id = elementos[n].substring(elementos[n].indexOf(':')+1,elementos[n].indexOf(','));
+        var valor = elementos[n].substring(elementos[n].indexOf('oferta:')+7,elementos[n].length);
+        console.log(id);
+        console.log(valor);
+        guardarOferta(id, valor); 
+      }
+    }
+    function agregarDemandas(){
+      var contenido = document.getElementsByClassName('contenedor-demandas')[0].innerHTML;
+      var cadena = contenido.substring(contenido.indexOf('id:'),contenido.indexOf("|-->"));
+      var elementos = cadena.split('|');
+      for(n=0;n<elementos.length;n++){
+        var id = elementos[n].substring(elementos[n].indexOf(':')+1,elementos[n].indexOf(','));
+        var valor = elementos[n].substring(elementos[n].indexOf('demanda:')+8,elementos[n].length);
+        console.log(id);
+        console.log(valor);
+        guardarDemanda(id, valor); 
+      }
     }
     function generarConexiones(){
       var htmlDiagram = document.getElementById("diagram").innerHTML;
@@ -335,8 +367,7 @@
               maxConnections: -1,
               connectionType: "red-connection"
         });
-      }
-        
+      }   
     }
   </script>
 
@@ -365,8 +396,22 @@
     </div>
   </div>
 
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#matriz" style="margin-left: 20px;"
-    onclick="mostrarMatriz('#tablaMatriz')">Generar matriz</button>
+  <!-- Botones -->
+  <div class = "botones">
+    <!-- Generar matriz -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#matriz" onclick="mostrarMatriz('#tablaMatriz')">Generar matriz</button>
+    <!-- Ingresar ofertas y demandas -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ofertaDemanda" onclick="mostrarInputOfertasyDemandas()">Ingresar ofertas y demandas</button>
+    <!-- Northwest -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#minimizacion" onclick="mostrarMaximizacion(false)">Minimizacion</button>
+    <!-- Northwest -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#minimizacion" onclick="mostrarMaximizacion(true)">Maximizacion</button>
+    <!-- Guardar graphy -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" id="guardarGrafo" data-target="#inputNombreArchivo" onclick="">Guardar graphy</button>
+    <!-- Subir graphy -->
+    <button type="button" class="btn btn-primary" id="subirGrafo">Subir graphy</button>
+    <input type="file" id="file-input" style="display: none;"/>
+  </div>
 
   <!-- Modal - ventalla emergente - matriz generada -->
   <div class="modal fade" id="matriz" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -390,8 +435,30 @@
     </div>
   </div>
 
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#minimizacion" id="GenerarInfo" onclick="matrizMinimizacion()">Minimizar</button>
-
+  <!-- Modal - ventalla emergente - Ingreso de Ofertas y Demandas -->
+  <div class="modal fade" id="ofertaDemanda" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content" id="matriz-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ofertas - Demandas</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="ofertas" class="modal-body">
+          <!-- Tabla de valores -->
+        </div>
+        <div id="demandas" class="modal-body">
+          <!-- Tabla de valores -->
+        </div>
+        <div class="modal-footer" id="matriz-footer">
+          <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>-->
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="guardarOfDem()">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Modal - ventalla emergente - Matriz de asignacion generada -->
   <div class="modal fade" id="minimizacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -399,40 +466,31 @@
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content" id="matriz-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Minimizacion</h5>
+          <h5 class="modal-title" id="exampleModalLabel">NorthWest</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-          <h6>Matriz de adyacencia</h6>
+          <h6>Matriz de adyacencia:</h6>
           <center>
             <div id="matriz-minimizacion" class="modal-body">
               <!-- Tabla de valores -->
             </div>
           </center>
 
-          <h6>Matriz A1</h6>
+          <h6>Función de optimización:</h6>
           <center>
-            <div id="a1-minimizacion" class="modal-body">
+            <div id="funcion-costo-minimo" class="modal-body">
               <!-- Tabla de valores -->
             </div>
           </center>
           
-          <h6>Matriz A2</h6>
+          <h6>El resultado es:</h6>
           <center>
-            <div id="a2-minimizacion" class="modal-body">
+            <div id="calculo-resultado-minimo" class="modal-body">
               <!-- Tabla de valores -->
             </div>
           </center>
-          <h6 id="caso-especial-minimizar"></h6>
-          <h6>Solución</h6>
-          <center>
-            <div id="matriz-solucion-minimizar" class="modal-body">
-              <!-- Tabla de valores -->
-            </div>
-          </center>
-          <h6>Valores</h6>
-          <div id="matriz-solucion-minimizar-valores"></div>
         <div class="modal-footer" id="matriz-footer">
           <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>-->
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
@@ -440,60 +498,6 @@
       </div>
     </div>
   </div>
-
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#maximizacion" id="GenerarInfo" onclick="matrizMaximizacion()">Maximizar</button>
-
-  <!-- Modal - ventalla emergente - Matriz de asignacion generada -->
-  <div class="modal fade" id="maximizacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content" id="matriz-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Maximizacion</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-          <h6>Matriz de adyacencia</h6>
-          <center>
-            <div id="matriz-maximizacion" class="modal-body">
-              <!-- Tabla de valores -->
-            </div>
-          </center>
-
-          <h6>Matriz A1</h6>
-          <center>
-            <div id="a1-maximizacion" class="modal-body">
-              <!-- Tabla de valores -->
-            </div>
-          </center>
-          
-          <h6>Matriz A2</h6>
-          <center>
-            <div id="a2-maximizacion" class="modal-body">
-              <!-- Tabla de valores -->
-            </div>
-          </center>
-          <h6 id="caso-especial-maximizar"></h6>
-          <h6>Solución</h6>
-          <center>
-            <div id="matriz-solucion-maximizar" class="modal-body">
-              <!-- Tabla de valores -->
-            </div>
-          </center>
-          <h6>Valores</h6>
-          <div id="matriz-solucion-maximizar-valores"></div>
-        <div class="modal-footer" id="matriz-footer">
-          <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>-->
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-
-
-  
 
   <!--Guardar y Subir Graphy-->
   <!-- Modal - ventana emergente - Nombre del archivo -->
@@ -517,14 +521,6 @@
       </div>
     </div>
   </div>
-  <button type="button" class="btn btn-primary" data-toggle="modal" id="guardarGrafo" data-target="#inputNombreArchivo" onclick="">Guardar graphy</button>
-
-  <!-- <button type="button" class="btn btn-primary" id="guardarGrafo" >Guardar graphy</button> -->
-  <button type="button" class="btn btn-primary" id="subirGrafo">Subir graphy</button>
-  <input type="file" id="file-input" style="display: none;"/>
-  <button type="button" class="btn btn-primary" id="descargarManual"><a style="color: white !important;" href="../resources/manuales/pdf/ManualDeUsuario_Asignacion.pdf" download="ManualAsignacion">Manual
-    </a></button>
 </body>
-<script type="text/javascript" src="../js/asignacion.js"></script>
-
+<script type="text/javascript" src="../js/northwest.js"></script>
 </html>

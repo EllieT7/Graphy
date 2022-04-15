@@ -158,7 +158,7 @@
 }
 /*Cuerpo de la página*/
 body {
-    background-image: url("../resources/inicio/fondo.png");
+    background-image: url("../resources/inicio/fondo.jpg");
     background-size: 100%;
     background-repeat: no-repeat;
 }
