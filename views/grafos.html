@@ -5,16 +5,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Grafos Puma Katari</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!--Fonts-->
   <link href="https://fonts.googleapis.com/css2?family=Cookie&family=Lobster&family=Roboto+Mono&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Kreon&family=Laila:wght@500&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
-
-  <!--La siguiente etiqueta permite relacionar el archivo htlm con el css-->
-  <link rel="stylesheet" href="../css/grafos.css">
 
   <!--La siguiente etiqueta permite relacionar el archivo htlm con la libreria bootstrap-->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -32,15 +27,18 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <!-- Icono -->
-  <link rel="shortcut icon" type="image/x-icon" href="../resources/modelado.ico"> 
+  <link rel="shortcut icon" type="image/x-icon" href="../resources/modelado.ico">
+  
+  <!--La siguiente etiqueta permite relacionar el archivo htlm con el css-->
+  <link rel="stylesheet" href="../css/grafos.css">
 </head>
 
 <!-- Navegación principal -->
 <nav>
   <ul>
     <li style="position: absolute; top: 15px; left: 20px; width: 50px;" id="casita"><a href="./index.html">
-      <img style="width: 40px;" src="../resources/images/casita.png" alt="atras">
-    </a></li>
+      <img style="width: 40px;" src="../resources/images/casita.png" alt="atras"></a>
+    </li>
     <li class="nav-item" id="nombreEmpresa"><img src="../resources/images/modelado.png" alt="logo_graphy" style="height: 50px;">  Graphy</li>
   </ul>
 </nav>
@@ -402,8 +400,7 @@
   <button type="button" class="btn btn-primary" data-toggle="modal" id="guardarGrafo" data-target="#inputNombreArchivo" onclick="">Guardar graphy</button>
   <button type="button" class="btn btn-primary" id="subirGrafo">Subir graphy</button>
   <input type="file" id="file-input" style="display: none;"/>
-  <button type="button" class="btn btn-primary" id="descargarManual"><a href="../resources/manuales/pdf/ManualDeUsuario_Grafos.pdf" target="_blank" style="color: white !important;">Manual
-    </a></button>
+  <button type="button" class="btn btn-primary" id="descargarManual"><a href="../resources/manuales/pdf/ManualDeUsuario_Grafos.pdf" target="_blank" style="color: white !important;">Manual</a></button>
   <br>
   <br>
 </body>

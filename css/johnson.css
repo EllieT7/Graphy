@@ -148,19 +148,20 @@ nav li {
 
 #casita:hover {
   background-color: #6a676d42;
+  border-radius: 10%;
 }
 .custom-menu{
-    display: flex;
-    flex-direction: column;
-    background-color: #d3dfdf;
-    padding: 8px;
-    border-radius: 10px;
-    border: 1px #616961 solid;
+  display: flex;
+  flex-direction: column;
+  background-color: #d3dfdf;
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px #616961 solid;
 }
 
 #matriz-content{
- overflow: auto;
- max-height: 550px;
+  overflow: auto;
+  max-height: 550px;
 }
 
 #matriz-footer{
@@ -203,6 +204,7 @@ nav li {
   display: block;
   width: 100%;
   text-align: center;
+  margin-bottom: 15%;
 }
 #lista-ref1{
   display: block;
