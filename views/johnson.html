@@ -56,12 +56,12 @@
     <div class="row">
       <!-- Div para la caja de herrramientas -->
       <div class="col-md-2">
-        <div id="toolbox" class="justify-content-center" style="height: 77vh !important; position: relative">
-          <h3><strong>Elementos</strong></h3>
-          <br>
-          <ul style="list-style: none; margin-left: -40%;">
-            <li class="flecha">🟦 Para entrada de enlaces</li>
-            <li class="flecha">🔵 Para salida de enlaces</li>
+        <div id="toolbox" class="justify-content-center">
+          <h3 id="elementos"><strong>Elementos</strong></h3>
+          <ul id="lista-ref1" style="list-style: none; margin-left: 20px;">
+            <li>🟦 Para entrada de enlaces</li>
+            <br>
+            <li>🔵 Para salida de enlaces</li>
           </ul>
           <div class="control new" style="left: 50px; top: 50px" id="cajita">
             <!-- Estacion vacunas -->
@@ -74,8 +74,7 @@
             Punto de vacunación
           </div>
           
-          <div>
-            <br>
+          <div id="flechas" class="justify-content-center" style="left: 50px; top: 50px">
             <div class="flecha"><img src="../resources/images/red_arrow.png" width="30px">Sin atributo</div>
             <div class="flecha"><img src="../resources/images/green_arrow.png" width="30px">Con atributo</div>
             <div class="flecha"><img src="../resources/images/blue_arrow.png" width="30px">Ruta crítica</div>

@@ -111,15 +111,15 @@
       // Caracteristicas (estilo) de la conexion.
       instance.registerConnectionTypes({
         "green-connection": {
-          paintStyle: { stroke: "#68B0AB", strokeWidth: 2 },
-          hoverPaintStyle: { stroke: "green", strokeWidth: 3 },
+          paintStyle: { stroke: "green", strokeWidth: 2 },
+          hoverPaintStyle: { stroke: "#67CB57", strokeWidth: 3 },
           connector: "Straight", //Bezier, Flowchart, Straight, StateMachine
           overlays: [["Arrow", { location: 0.9, width: 20, length: 20, foldback: 0.9 }],
           ["Label", { label: "", location: 0.25 }]]
         }//----------------------------------------------------------------------------------//
         ,"red-connection": {
-          paintStyle: { stroke: "#FF0000",strokeWidth: 2 },
-          hoverPaintStyle: { stroke: "red", strokeWidth: 3 },
+          paintStyle: { stroke: "red",strokeWidth: 2 },
+          hoverPaintStyle: { stroke: "#E43B45", strokeWidth: 3 },
           connector: "Straight", //Bezier, Flowchart, Straight, StateMachine
           overlays: [["Arrow", { location: 0.9, width: 20, length: 20, foldback: 0.9 }],
           ["Label", { label: "${label}", location: 0.25 }]]
@@ -402,7 +402,7 @@
   <button type="button" class="btn btn-primary" data-toggle="modal" id="guardarGrafo" data-target="#inputNombreArchivo" onclick="">Guardar graphy</button>
   <button type="button" class="btn btn-primary" id="subirGrafo">Subir graphy</button>
   <input type="file" id="file-input" style="display: none;"/>
-  <button type="button" class="btn btn-primary" id="descargarManual"><a style="color: white !important;" href="" download="ManualGrafos">Manual
+  <button type="button" class="btn btn-primary" id="descargarManual"><a href="../resources/manuales/pdf/ManualDeUsuario_Grafos.pdf" target="_blank" style="color: white !important;">Manual
     </a></button>
   <br>
   <br>
