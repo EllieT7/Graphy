@@ -73,7 +73,7 @@
         <div id="toolbox" class="justify-content-center">
           <h3><strong>Elementos</strong></h3>
           <br><br>
-          <ul style="list-style: none; margin-left: -30%;">
+          <ul style="list-style: none; margin-left: -10%;">
             <li>🟦 Para entrada de enlaces</li>
             <br>
             <li>🔵 Para salida de enlaces</li>
@@ -318,9 +318,6 @@
       }
       return flag;
     }
-
-    
-
     //--------------MODIFICAR PARA SUBIR Y GUARDAR----------------------------
     //TODO Agregar movilidad a los elementos subidos.
     function drag() {
@@ -335,9 +332,6 @@
       document.querySelector("#habilitar-div").classList.remove('habilitar-activo');
       
     }
-
-    
-
     function eliminarBloqueComentario() {
       $(".contenedor-conexiones-right").remove();
       $(".contenedor-conexiones-left").remove();
@@ -415,11 +409,8 @@
           connectionType: "green-connection"
         });
         }
-
-      }
-      
+      } 
     }
-    //--------------------------------------------------------------------------------------------
   </script>
 
   <!-- Modal - ventalla emergente - agregar valor a la flecha -->
@@ -471,8 +462,6 @@
     </div>
   </div>
 
-  <!--Botones 🤠-->
-  <button style="margin-left: 20px;" type="button" class="btn btn-primary" id="inorder" data-toggle="modal" data-target="#modalRecorrido" onclick="recorridos()">Recorridos</button>
   <!-- Modal - recorrido -->
   <div class="modal fade" id="modalRecorrido" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -502,12 +491,14 @@
     </div>
   </div>
   
-  <button type="button" class="btn btn-primary" data-toggle="modal" id="guardarGrafo" data-target="#inputNombreArchivo"
-    onclick="">Guardar graphy</button>
+  <!--Botones-->
+  <button style="margin-left: 20px;" type="button" class="btn btn-primary" id="inorder" data-toggle="modal" data-target="#modalRecorrido" onclick="recorridos()">Recorridos</button>
+  <button type="button" class="btn btn-primary" data-toggle="modal" id="guardarGrafo" data-target="#inputNombreArchivo" onclick="">Guardar graphy</button>
   <button type="button" class="btn btn-primary" id="subirGrafo">Subir graphy</button>
-  <input type="file" id="file-input" style="display: none;" />
-  <button type="button" class="btn btn-primary" id="descargarManual"><a style="color: white !important;" href="../resources/manuales/pdf/ManualDeUsuario_Arboles.pdf"
-      download="ManualArbolesBinarios">Manual</a></button>
+  <input type="file" id="file-input" style="display: none;"/>
+  <button type="button" class="btn btn-primary" id="descargarManual"><a style="color: white !important;" href="../resources/manuales/pdf/ManualDeUsuario_Arboles.pdf" target="_blank">Manual</a></button>
+  <br>
+  <br>
 </body>
 <script type="text/javascript" src="../js/arboles.js"></script>
 
