@@ -490,9 +490,37 @@
       </div>
     </div>
   </div>
+
+  <!-- Modal - ingresar cadena -->
+  <div class="modal fade" id="inputCadena" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ingresar cadena de valores</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <strong>Hola!!! Por favor ingresa la cadena de valores para construir tú árbol binario.</strong><br>
+          Recuerda que debes separar los valores con comas (',') sino no se podra construir tu árbol correctamente.
+          <br>No te olvides de revisar que hayas ingresado los valores en el orden que quieres que el árbol se contruya.
+          <br>Y por favor no respitas valores.<br>
+          <center>
+            <input onKeypress="if (event.keyCode != 44 && (event.keyCode < 48 || event.keyCode > 57)) event.returnValue = false;" id="cadenaValores">
+          </center>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
   
   <!--Botones-->
   <button style="margin-left: 20px;" type="button" class="btn btn-primary" id="inorder" data-toggle="modal" data-target="#modalRecorrido" onclick="recorridos()">Recorridos</button>
+  <button type="button" class="btn btn-primary" data-toggle="modal" id="ingresarCadena" data-target="#inputCadena">Ingresar cadena</button>
   <button type="button" class="btn btn-primary" data-toggle="modal" id="guardarGrafo" data-target="#inputNombreArchivo" onclick="">Guardar graphy</button>
   <button type="button" class="btn btn-primary" id="subirGrafo">Subir graphy</button>
   <input type="file" id="file-input" style="display: none;"/>
