@@ -511,8 +511,12 @@
             <input onKeypress="if (event.keyCode != 44 && (event.keyCode < 48 || event.keyCode > 57)) event.returnValue = false;" id="cadenaValores">
           </center>
         </div>
+        <div id="mensaje" class="habilitar-mensaje">
+          <!--Mensajes de error-->
+        </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
+          <button type="button" class="btn btn-primary" onclick="cadenaSeparar()">Aceptar</button>
+          <button id="cadenaModal" type="button" class="btn btn-secondary" data-dismiss="modal" style="display: none;">Aceptar</button>
         </div>
       </div>
     </div>

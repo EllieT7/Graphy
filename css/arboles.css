@@ -213,3 +213,13 @@ nav li:hover {
 .izquierda {
   left: 77% !important;
 }
+
+.habilitar-mensaje {
+  background-color: rgb(255, 105, 97);
+  color: white;
+  display: none;
+  padding-left: 15px;
+}
+.habilitar-mensaje-activo {
+  display: block;
+} 

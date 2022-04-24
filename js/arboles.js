@@ -360,3 +360,45 @@ function hijoDerecho(id){
     }
     return aux;
 }
+//---------------------------------------------------------------------------------------------------------
+function cadenaSeparar () {
+    var cadena = document.getElementById("cadenaValores").value;
+    console.log(cadena);
+    if(cadena!=""){
+        var valores = cadena.split(',');
+        console.log(valores);
+        if(valores.includes('')){
+            habilitarMensaje('Error existen espacios en blanco en tu cadena, revísala por favor :(');
+        } else {
+            if(buscarRepetidos(valores)){
+                habilitarMensaje('Error existen elementos repetidos, revisa los valores de tu cadena :(');
+            } else {
+                document.getElementById("cadenaModal").click();
+            }
+        }
+    } else {
+        habilitarMensaje('La cadena que quieres mandar esta vacía :(');
+    }
+}
+function buscarRepetidos(valores){
+    var flag = false;
+    for(i=0; i<valores.length; i++){
+        for(j=i+1; j<valores.length; j++){
+            if(parseInt(valores[i])==parseInt(valores[j])){
+                flag = true;
+                break;
+            }
+        }
+        if(flag==true){
+            break;
+        }
+    }
+    return flag;
+}
+function habilitarMensaje(mensaje){
+    $('#mensaje').html(mensaje);
+    document.querySelector("#mensaje").classList.add('habilitar-mensaje-activo');
+    setTimeout(function(){
+        document.querySelector("#mensaje").classList.remove('habilitar-mensaje-activo');
+    }, 4000);
+}
