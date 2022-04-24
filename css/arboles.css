@@ -222,4 +222,16 @@ nav li:hover {
 }
 .habilitar-mensaje-activo {
   display: block;
-} 
+}
+
+.scroll-bar-vertical {
+  height: 100%;
+  border: 1px solid grey;
+  overflow: auto;
+}
+.scroll-bar-horizontal {
+  width: 100%;
+  border: 1px solid grey;
+  overflow: auto;
+  white-space: nowrap;
+}
