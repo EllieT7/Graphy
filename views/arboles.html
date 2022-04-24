@@ -53,10 +53,10 @@
 <!-- Navegación principal -->
 <nav>
   <ul>
-    <li style="position: absolute; top: 15px; left: 20px; width: 50px;" id="casita"><a href="./index.html">
-      <img style="width: 40px;" src="../resources/images/casita.png" alt="atras">
+    <li style="position: absolute; top: 15px; left: 20px; width: 50px;" id="casita"><a href="#">
+      <img style="width: 40px;" src="/resources/images/casita.png" alt="atras">
     </a></li>
-    <li class="nav-item" id="nombreEmpresa"><img src="../resources/images/modelado.png" alt="logo_graphy"
+    <li class="nav-item" id="nombreEmpresa"><img src="../resources\images\modelado.png" alt="logo_graphy"
         style="height: 50px;">Graphy</li>
   </ul>
 </nav>
@@ -73,7 +73,7 @@
         <div id="toolbox" class="justify-content-center">
           <h3><strong>Elementos</strong></h3>
           <br><br>
-          <ul style="list-style: none; margin-left: -10%;">
+          <ul style="list-style: none; margin-left: -30%;">
             <li>🟦 Para entrada de enlaces</li>
             <br>
             <li>🔵 Para salida de enlaces</li>
@@ -240,34 +240,37 @@
         if (info.sourceId == info.targetId) {
           instance.deleteConnection(info.connection);
         }
-      //Primeramente debemos saber si el nodo al que esta llegando la conexion es izquierda o derecha
-      var tipo=0;
-      var clasesNodo=document.getElementById(info.targetId).classList;
-      if(clasesNodo.contains("root")){
-        tipo = 0;
-      }
-      else if(clasesNodo.contains("left")){
-        tipo = 1;
-      }
-      else{
-        tipo=2;
-      }
-      console.log(tipo);
-      var sePuedeConectar = false;
-      if (tieneConexionEntrada(info.targetId)){
-        sePuedeConectar=false;
-      }
-      else if (tipo==1){
-        sePuedeConectar=!hasLeftNode(info);
-      }
-      else if(tipo==2){
-        sePuedeConectar=!hasRightNode(info);
-      }
-      if(sePuedeConectar==false){
-        instance.deleteConnection(info.connection);
-        alert("Cada nodo solamente puede tener un nodo hijo izquierdo y otro derecho\n Cada nodo puede tener solamente una conexion de entrada.");
-      }
-      });
+        //Primeramente debemos saber si el nodo al que esta llegando la conexion es izquierda o derecha
+        var tipo=0;
+        var clasesNodo=document.getElementById(info.targetId).classList;
+        if(clasesNodo.contains("root")){
+          tipo = 0;
+        }
+        else if(clasesNodo.contains("left")){
+          tipo = 1;
+        }
+        else{
+          tipo=2;
+        }
+        console.log(tipo);
+        var sePuedeConectar = false;
+        if (tieneConexionEntrada(info.targetId)){
+          sePuedeConectar=false;
+        }
+        else if (tipo==1){
+          sePuedeConectar=!hasLeftNode(info);
+        }
+        else if(tipo==2){
+          sePuedeConectar=!hasRightNode(info);
+        }
+        if(casoEspecialConexiones()){
+          sePuedeConectar = true;
+        }
+        if(sePuedeConectar==false){
+          instance.deleteConnection(info.connection);
+          alert("Cada nodo solamente puede tener un nodo hijo izquierdo y otro derecho\n Cada nodo puede tener solamente una conexion de entrada.");
+        }
+        });
     });
 
     function guardarValor() {
@@ -318,6 +321,9 @@
       }
       return flag;
     }
+
+    
+
     //--------------MODIFICAR PARA SUBIR Y GUARDAR----------------------------
     //TODO Agregar movilidad a los elementos subidos.
     function drag() {
@@ -330,8 +336,8 @@
       agregarValoresNodos();
       eliminarBloqueComentario();
       document.querySelector("#habilitar-div").classList.remove('habilitar-activo');
-      
     }
+
     function eliminarBloqueComentario() {
       $(".contenedor-conexiones-right").remove();
       $(".contenedor-conexiones-left").remove();
@@ -409,7 +415,13 @@
           connectionType: "green-connection"
         });
         }
-      } 
+
+      }
+      
+    }
+    //--------------------------------------------------------------------------------------------
+    function moverNodos(){
+      instance.draggable($('.control'));
     }
   </script>
 
@@ -462,6 +474,8 @@
     </div>
   </div>
 
+  <!--Botones 🤠-->
+  <button style="margin-left: 20px;" type="button" class="btn btn-primary" id="inorder" data-toggle="modal" data-target="#modalRecorrido" onclick="recorridos()">Recorridos</button>
   <!-- Modal - recorrido -->
   <div class="modal fade" id="modalRecorrido" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -490,7 +504,10 @@
       </div>
     </div>
   </div>
-
+  
+  <!-- Ingresar cadena -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" id="ingresarCadena" data-target="#inputCadena">Ingresar cadena</button>
+  <!-- Modal - cadena -->
   <!-- Modal - ingresar cadena -->
   <div class="modal fade" id="inputCadena" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -506,7 +523,7 @@
           <strong>Hola!!! Por favor ingresa la cadena de valores para construir tú árbol binario.</strong><br>
           Recuerda que debes separar los valores con comas (',') sino no se podra construir tu árbol correctamente.
           <br>No te olvides de revisar que hayas ingresado los valores en el orden que quieres que el árbol se contruya.
-          <br>Y por favor no respitas valores.<br>
+          <br>Y por favor no repitas valores.<br>
           <center>
             <input onKeypress="if (event.keyCode != 44 && (event.keyCode < 48 || event.keyCode > 57)) event.returnValue = false;" id="cadenaValores">
           </center>
@@ -521,16 +538,13 @@
       </div>
     </div>
   </div>
-  
-  <!--Botones-->
-  <button style="margin-left: 20px;" type="button" class="btn btn-primary" id="inorder" data-toggle="modal" data-target="#modalRecorrido" onclick="recorridos()">Recorridos</button>
-  <button type="button" class="btn btn-primary" data-toggle="modal" id="ingresarCadena" data-target="#inputCadena">Ingresar cadena</button>
-  <button type="button" class="btn btn-primary" data-toggle="modal" id="guardarGrafo" data-target="#inputNombreArchivo" onclick="">Guardar graphy</button>
+
+  <button type="button" class="btn btn-primary" data-toggle="modal" id="guardarGrafo" data-target="#inputNombreArchivo"
+    onclick="">Guardar graphy</button>
   <button type="button" class="btn btn-primary" id="subirGrafo">Subir graphy</button>
-  <input type="file" id="file-input" style="display: none;"/>
-  <button type="button" class="btn btn-primary" id="descargarManual"><a style="color: white !important;" href="../resources/manuales/pdf/ManualDeUsuario_Arboles.pdf" target="_blank">Manual</a></button>
-  <br>
-  <br>
+  <input type="file" id="file-input" style="display: none;" />
+  <button type="button" class="btn btn-primary" id="descargarManual"><a style="color: white !important;" href="#"
+      download="ManualArbolesBinarios">Manual</a></button>
 </body>
 <script type="text/javascript" src="../js/arboles.js"></script>
 
