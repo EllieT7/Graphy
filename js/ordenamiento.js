@@ -267,3 +267,85 @@ function limpiar() {
     $('#merge').html("");
     $('#shell').html("");
 }
+//Guardar graphy
+function guardarGrafo(){
+    var nombreArchivo=document.getElementById("nombreArchivo").value;
+    var data="";
+    for(dato=0;dato<numeros.length;dato++){
+        data+=numeros[dato];
+        data+="\n";
+    }
+
+    var textFileAsBlob = new Blob([data], {type:'text/txt'});
+    // Specify the name of the file to be saved
+    var fileNameToSaveAs = nombreArchivo+".txt";
+
+    // create a link for our script to 'click'
+    var downloadLink = document.createElement("a");
+    downloadLink.download = fileNameToSaveAs;
+    downloadLink.innerHTML = "My Hidden Link";
+    
+    // allow our code to work in webkit & Gecko based browsers
+    // without the need for a if / else block.
+    window.URL = window.URL || window.webkitURL;
+        
+    // Create the link Object.
+    downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+    // when link is clicked call a function to remove it from
+    // the DOM in case user wants to save a second file.
+    downloadLink.onclick = destroyClickedElement;
+    // make sure the link is hidden.
+    downloadLink.style.display = "none";
+    // add the link to the DOM
+    document.body.appendChild(downloadLink);
+    
+    // click the new link
+    downloadLink.click();
+
+    function destroyClickedElement(event){
+    //remove the link from the DOM
+        document.body.removeChild(event.target);
+    }
+}
+//--------------------------------------------------------------------------------------------------------------
+// Funcion para detectar la carga del archivo
+document.querySelector('#file-input').addEventListener('change', ()=>{
+    $('#insertion').html("");
+    $('#selection').html("");
+    $('#merge').html("");
+    $('#shell').html("");
+    let input = document.querySelector("#file-input");
+    let files = input.files;
+    if (files.lenght==0)return;
+    const file = files[0];
+    let reader = new FileReader();
+    reader.onload = (e) => {
+        const file = e.target.result;
+        var aux = file.split('\n');
+        aux.splice(0,0);
+        aux.splice(-1);
+        numeros=[];
+        cantidadNumeros=Object.keys(aux).length;
+        for(i=0;i<cantidadNumeros;i++){
+            numeros.push(parseInt(aux[i],10));
+        }
+        var html = `<table><tr><td colspan="20"><h4>Numeros a ordenar</h4</td></tr><tr>`;
+    for (i = 0; i < numeros.length; i++) {
+        if (i % 20 == 0) {
+            html += `</tr><tr><td>${numeros[i]}</td>`;
+        }
+        else {
+            html += `<td>${numeros[i]}</td>`;
+        }
+    }
+    html += `</table>`;
+    $('#datos').html(html);
+    };
+    reader.onerror = (e) => alert(e.target.error.name);
+    reader.readAsText(file);
+});
+
+// Funcion para activar el input-file al presionar el boton Subir graphy.
+document.getElementById("subirGrafo").addEventListener('click', function() {
+    document.getElementById("file-input").click();
+});
