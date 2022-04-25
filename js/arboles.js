@@ -664,7 +664,10 @@ function comprobar (){
             console.log(cadena);
             console.log('c '+c);
         }
+        document.getElementById("cadenaRecorridosModal").click();
         console.log(cadena);
+        cadenaArbol(cadena);
+
     } else {
         habilitarMensajeRecorridos('Error en los recorridos revise por favor.');
     }
