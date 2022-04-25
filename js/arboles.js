@@ -270,21 +270,21 @@ function recorridos() {
         var vectorInOrder = inOrder();
         var html1 = '';
         for (i = 0; i < vectorInOrder.length - 1; i++) {
-            html1 += `${vectorInOrder[i]}, `;
+            html1 += `${vectorInOrder[i]},`;
         }
         html1 += `${vectorInOrder[vectorInOrder.length - 1]}`;
         $('#recorridoInOrder').html(html1);
         var vectorPreOrder = preOrder();
         var html2 = '';
         for (j = 0; j < vectorPreOrder.length - 1; j++) {
-            html2 += `${vectorPreOrder[j]}, `;
+            html2 += `${vectorPreOrder[j]},`;
         }
         html2 += `${vectorPreOrder[vectorPreOrder.length - 1]}`;
         $('#recorridoPreOrder').html(html2);
         var vectorPostOrder = postOrder();
         var html3 = '';
         for (k = 0; k < vectorPostOrder.length - 1; k++) {
-            html3 += `${vectorPostOrder[k]}, `;
+            html3 += `${vectorPostOrder[k]},`;
         }
         html3 += `${vectorPostOrder[vectorPostOrder.length - 1]}`;
         $('#recorridoPostOrder').html(html3);
@@ -406,8 +406,6 @@ function posicionarNodos(){
     nodoRaiz = nodos[3];
     nodoRaiz.style.top = y + "px";
     nodoRaiz.style.left = x + "px";
-    //var nodosPadres = [];
-    //Posicionamiento hijos
     for(nodo=4;nodo<nodos.length;nodo++){
         infoNodo = getInfo(nodos[nodo].id); //obtenemos el id del padre y si es hijo izquierdo o derecho
         idNodoPadre = infoNodo.idPadre;
@@ -418,27 +416,6 @@ function posicionarNodos(){
         x = parseFloat(xString.substr(0,xString.length-2));
         nodos[nodo].style.top = (y+110) + 'px';
         
-        // if(nodosPadres.includes(idNodoPadre)){ //significa que tiene dos hijos
-        //     // nodosHijos = getHijos(idNodoPadre);
-        //     // derechaString = document.getElementById(nodosHijos.derecha).style.left;
-        //     // izqString = document.getElementById(nodosHijos.izquierda).style.left;
-        //     // xDer = parseFloat(derechaString.substr(0,derechaString.length-2));
-        //     // xIzq = parseFloat(izqString.substr(0,izqString.length-2));
-        //     // document.getElementById(nodosHijos.derecha).style.left = (xDer+100) + 'px';
-        //     // document.getElementById(nodosHijos.izquierda).style.left = (xIzq+100) + 'px';
-        //     var right = document.getElementById(idNodoPadre).classList.contains('right');
-        //     posXString = document.getElementById(idNodoPadre).style.left;
-        //     xPadre = parseFloat(posXString.substr(0,posXString.length-2));
-        //     if(right){
-        //         document.getElementById(idNodoPadre).style.left = (xPadre+80) + 'px';
-        //     }else{
-        //         document.getElementById(idNodoPadre).style.left = (xPadre-80) + 'px';
-        //     }
-            
-               
-        // }else{
-        //     nodosPadres.push(idNodoPadre);
-        // }
         if(infoNodo.hijoDerecha){
             nodos[nodo].style.left = (x+80) + 'px';
         }else{
@@ -486,6 +463,45 @@ function getInfo(idHijo){
     return {idPadre: idPadre, hijoDerecha: flag};
     
 }
+
+function agregarNodosBaseDatos(valores) {
+    var id = uuidv4();  //id para la raiz
+    idRaiz = id;
+    aux = idRaiz;
+    valorRaiz = parseInt(valores[0]);
+    //hijos
+    for (i = 1; i < valores.length; i++) {
+        id = uuidv4();  //id - se va actualizando cada vuelta
+        //hijo izquierdo
+        flag = true;
+        while(flag){            
+            if (parseInt(valores[i]) < parseInt(valorRaiz) && !hasLeftNode({sourceId: idRaiz, targetId: id}) ) {
+                //asignamos raiz - Reestableciendo punto de inicio
+                valorRaiz = parseInt(valores[0]);
+                idRaiz = aux;
+                flag = false;
+    
+            } else if (parseInt(valores[i]) > parseInt(valorRaiz) && !hasRightNode({sourceId: idRaiz, targetId: id})) { //hijo derecho
+                //asignamos raiz - Reestableciendo punto de inicio
+                valorRaiz = parseInt(valores[0]);
+                idRaiz = aux;
+                flag = false;
+            }else{
+                //Ambas ramificaciones ocupadas                
+                if(parseInt(valores[i])<parseInt(valorRaiz)){   //izquierda
+                    idRaiz = getLeftNode(idRaiz);
+                }else{
+                    //derecha
+                    idRaiz = getRightNode(idRaiz);
+                }
+                valorRaiz = document.getElementById(idRaiz).getElementsByTagName('h5')[0].innerText; //Asignamos nuevo valor raiz
+            }
+        }
+        
+    }
+
+}
+
 function agregarNodos(valores) {
     var diagrama = document.getElementById('diagram');
     var id = uuidv4();  //id para la raiz
@@ -621,7 +637,6 @@ var pre = [];
 var post = [];
 var inorder = [];
 var cadena = [];
-
 function comprobar (){
     pre = [];
     post = [];
@@ -633,45 +648,172 @@ function comprobar (){
     post = cadenapost.split(',');
     var cadenainorder = document.getElementById("cadenaInOrder").value;
     inorder = cadenainorder.split(',');
-//1,2,3,4,6,9,11,15,17,21,90
-//4,2,1,3,15,9,6,11,21,17,90
-    if(pre.length==post.length && post.length==inorder.length){
-        var c = 0;
-        var menor = 0;
-        var mayor = 0;
-        console.log('Tamanio '+pre.length);
-        while(c<pre.length-1){
-            if(c==0){
-                cadena.push(pre[c]);
-                c++;
-                cadena.push(pre[c]);
-                menor = cadena[c];
-                c++;
-                cadena.push(findDerecho(cadena[0]));
-                mayor = cadena[c];
-                console.log('c '+c);
-            } else {
-                console.log('Mayor '+mayor);
-                console.log('Menor '+menor);
-                c = c + findEntre(menor, mayor);
-                menor = cadena[c];
-                if(cadena.includes(findDerecho(mayor))==false){
-                    cadena.push(findDerecho(mayor));
-                    c++;
-                }
-                mayor = cadena[c];
-            }
-            console.log(cadena);
-            console.log('c '+c);
-        }
-        document.getElementById("cadenaRecorridosModal").click();
-        console.log(cadena);
-        cadenaArbol(cadena);
-
+    if(buscarRepetidos(inorder) || buscarRepetidos(pre) || buscarRepetidos(post)){
+        habilitarMensajeRecorridos('Error existen elementos repetidos en los recorridos, revísalos por favor :(');
     } else {
-        habilitarMensajeRecorridos('Error en los recorridos revise por favor.');
+        if(pre.length==post.length && post.length==inorder.length){
+            if(compararVectores()){
+                var c = 0;
+            var menor = 0;
+            var mayor = 0;
+            console.log('Tamanio '+pre.length);
+            while(c<pre.length-1){
+                if(c==0){
+                    cadena.push(pre[c]);
+                    c++;
+                    cadena.push(pre[c]);
+                    menor = cadena[c];
+                    if(cadena.includes(findDerecho(cadena[0]))==false){
+                        cadena.push(findDerecho(cadena[0]));
+                        c++;
+                    }
+                    mayor = cadena[c];
+                    console.log('c '+c);
+                } else {
+                    console.log('Mayor '+mayor);
+                    console.log('Menor '+menor);
+                    c = c + findEntre(menor, mayor);
+                    menor = cadena[c];
+                    if(cadena.includes(findDerecho(mayor))==false){
+                        cadena.push(findDerecho(mayor));
+                        c++;
+                    }
+                    mayor = cadena[c];
+                }
+                console.log(cadena);
+                console.log('c '+c);
+            }
+            
+            console.log(cadena);
+            cadenaArbol(cadena);
+                if(!validarCadena(cadena)){
+                    habilitarMensajeRecorridos('Error, los recorridos no coinciden...Intente nuevamente');
+                    document.getElementById('diagram').innerHTML = "";
+                    location.reload();
+                }else{
+                    document.getElementById("cadenaRecorridosModal").click();
+                }
+            } else {
+                habilitarMensajeRecorridos('Error existen diferentes valores en los recorridos.');
+            }
+        } else {
+            habilitarMensajeRecorridos('Error en los recorridos revise por favor.');
+        }
     }
 }
+
+
+function validarCadena(cadena){
+    flag = true;
+
+    // if(!inOrderValidar(cadena)){
+    //     flag = false;
+    // } else if (preOrderValidar(cadena)){
+
+    // }
+    recorridos();
+    var inOrderValidar = document.getElementById("recorridoInOrder").innerText;
+    var inOrderValidarSplit = inOrderValidar.split(',');
+    var inOrderEnteros = [];
+    var preOrderValidar = document.getElementById("recorridoPreOrder").innerText;
+    var preOrderValidarSplit = preOrderValidar.split(',');
+    var preOrderEnteros = [];
+    var postOrderValidar = document.getElementById("recorridoPostOrder").innerText;
+    var postOrderValidarSplit = postOrderValidar.split(',');
+    var postOrderEnteros = [];
+    var inOrderCadena = document.getElementById("cadenaInOrder").value;
+    var inOrderCadenaSplit = inOrderCadena.split(',');
+    var inOrderCadenaEnteros = [];
+    var preOrderCadena = document.getElementById("cadenaPreOrder").value;
+    var preOrderCadenaSplit = preOrderCadena.split(',');
+    var preOrderCadenaEnteros = [];
+    var postOrderCadena = document.getElementById("cadenaPostOrder").value;
+    var postOrderCadenaSplit = postOrderCadena.split(',');
+    var postOrderCadenaEnteros = [];
+    for(i=0; i<postOrderValidarSplit.length; i++){
+        inOrderEnteros.push(parseInt(inOrderValidarSplit[i]));
+        preOrderEnteros.push(parseInt(preOrderValidarSplit[i]));   
+        postOrderEnteros.push(parseInt(postOrderValidarSplit[i])); 
+        inOrderCadenaEnteros.push(parseInt(inOrderCadenaSplit[i]));
+        preOrderCadenaEnteros.push(parseInt(preOrderCadenaSplit[i]));   
+        postOrderCadenaEnteros.push(parseInt(postOrderCadenaSplit[i]));    
+    }
+    console.log(inOrderEnteros);
+    console.log(inOrderCadenaEnteros);
+    console.log(preOrderEnteros);
+    console.log(preOrderCadenaEnteros);
+    console.log(postOrderEnteros);
+    console.log(postOrderCadenaEnteros);
+    for(j=0; j<postOrderValidarSplit.length; j++){
+        if(inOrderEnteros[j]!=inOrderCadenaEnteros[j]){
+            flag = false;
+            window.alert('Error, el recorrido inOrder no corresponde a los otros recorridos');
+            break;
+        } else if(preOrderEnteros[j]!=preOrderCadenaEnteros[j]){
+            flag = false;
+            window.alert('Error, el recorrido preOrder no corresponde a los otros recorridos');
+            break;
+        } else if(postOrderEnteros[j]!=postOrderCadenaEnteros[j]){
+            flag = false;
+            window.alert('Error, el recorrido postOrder no corresponde a los otros recorridos');
+            break;
+        }
+    }
+    return flag;
+}
+function inOrderValidar(cadena) {
+    var flag = true;
+    var valoresNodos = [];
+    for (i = 0; i < cadena.length; i++) {
+        valoresNodos.push(parseInt(cadena[i]));
+    }
+    valoresNodos = valoresNodos.sort(function (a, b) { return a - b });
+    console.log(valoresNodos); 
+    var cadenainorder = document.getElementById("cadenaInOrder").value;
+    var inorder1 = cadenainorder.split(',');
+    var inorderenteros = [];
+    for(j=0; j<inorder1.length; j++){
+        inorderenteros.push(parseInt(inorder1[j]));
+    }
+    for(k=0; k<inorder1.length; k++){
+        if(inorderenteros[k]!=valoresNodos[k]){
+            flag = false;
+            break;
+        }
+    }
+    return flag;
+}
+function preOrderValidar(cadena) {
+    var preorder = [];
+    var nodosRaiz = document.getElementsByClassName('root');
+    var raiz = nodosRaiz[1].id;
+    llenarPreOrder(preorder, raiz);
+    console.log(preorder);
+    return preorder;
+}
+function llenarPreOrder(vector, id) {
+    if (id != null) {
+        vector.push(valorNodo(id));
+        llenarPreOrder(vector, hijoIzquierdo(id));
+        llenarPreOrder(vector, hijoDerecho(id));
+    }
+}
+function postOrder() {
+    var postorder = [];
+    var nodosRaiz = document.getElementsByClassName('root');
+    var raiz = nodosRaiz[1].id;
+    llenarPostOrder(postorder, raiz);
+    console.log(postorder);
+    return postorder;
+}
+function llenarPostOrder(vector, id) {
+    if (id != null) {
+        llenarPostOrder(vector, hijoIzquierdo(id));
+        llenarPostOrder(vector, hijoDerecho(id));
+        vector.push(valorNodo(id));
+    }
+}
+
 function findDerecho(num){
     var encontrado = post[0];
     for(i=0; i<post.length-1; i++) {
@@ -709,4 +851,18 @@ function habilitarMensajeRecorridos(mensaje){
     setTimeout(function(){
         document.querySelector("#mensajeRecorridos").classList.remove('habilitar-mensaje-recorridos-activo');
     }, 4000);
+}
+function compararVectores(){
+    flag = true;
+    for(i=0; i<inorder.length; i++){
+        if(!inorder.includes(pre[i])){
+            flag = false;
+            break;
+        }
+        if(!inorder.includes(post[i])){
+            flag = false;
+            break;
+        }
+    }
+    return flag;
 }

@@ -298,6 +298,7 @@
           //$('#mensajeError').html("");
         }
         else{
+          window.alert('Error, el valor ingresado no es valido. Intente nuevamente :)');
           var html=`Hubo un error`;
           //$('#mensajeError').html(html);
         }
@@ -555,7 +556,7 @@
           <strong>Hola!!! Por favor ingresa los recorridos de tú árbol binario.</strong><br>
           Recuerda que debes separar los valores con comas (',') sino no se podra construir tu árbol correctamente.
           <br>No te olvides de revisar que hayas ingresado los valores en el orden que quieres que el árbol se contruya.
-          <br>Y por favor no respitas valores.<br>
+          <br>Y por favor no repitas valores.<br>
           <h3>In-order</h3>
           <input onKeypress="if (event.keyCode != 44 && (event.keyCode < 48 || event.keyCode > 57)) event.returnValue = false;" id="cadenaInOrder" style="width: 50%;">
           <h3>Pre-order</h3>
