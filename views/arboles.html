@@ -523,9 +523,9 @@
           <strong>Hola!!! Por favor ingresa la cadena de valores para construir tú árbol binario.</strong><br>
           Recuerda que debes separar los valores con comas (',') sino no se podra construir tu árbol correctamente.
           <br>No te olvides de revisar que hayas ingresado los valores en el orden que quieres que el árbol se contruya.
-          <br>Y por favor no repitas valores.<br>
+          <br>Y por favor no repitas valores.<br><br>
           <center>
-            <input onKeypress="if (event.keyCode != 44 && (event.keyCode < 48 || event.keyCode > 57)) event.returnValue = false;" id="cadenaValores">
+            <input onKeypress="if (event.keyCode != 44 && (event.keyCode < 48 || event.keyCode > 57)) event.returnValue = false;" id="cadenaValores" style="width: 50%;">
           </center>
         </div>
         <div id="mensaje" class="habilitar-mensaje">
@@ -539,6 +539,40 @@
     </div>
   </div>
 
+  <!-- Modal - ingresar recorridos -->
+  <div class="modal fade" id="inputRecorridos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ingresar los recorridos del árbol binario</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <strong>Hola!!! Por favor ingresa los recorridos de tú árbol binario.</strong><br>
+          Recuerda que debes separar los valores con comas (',') sino no se podra construir tu árbol correctamente.
+          <br>No te olvides de revisar que hayas ingresado los valores en el orden que quieres que el árbol se contruya.
+          <br>Y por favor no respitas valores.<br>
+          <h3>In-order</h3>
+          <input onKeypress="if (event.keyCode != 44 && (event.keyCode < 48 || event.keyCode > 57)) event.returnValue = false;" id="cadenaInOrder" style="width: 50%;">
+          <h3>Pre-order</h3>
+          <input onKeypress="if (event.keyCode != 44 && (event.keyCode < 48 || event.keyCode > 57)) event.returnValue = false;" id="cadenaPreOrder" style="width: 50%;">
+          <h3>Post-order</h3>
+          <input onKeypress="if (event.keyCode != 44 && (event.keyCode < 48 || event.keyCode > 57)) event.returnValue = false;" id="cadenaPostOrder" style="width: 50%;">
+        </div>
+        <div id="mensajeRecorridos" class="habilitar-mensaje-recorridos">
+          <!--Mensajes de error-->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="comprobar()">Aceptar</button>
+          <button id="cadenaRecorridosModal" type="button" class="btn btn-secondary" data-dismiss="modal" style="display: none;">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button type="button" class="btn btn-primary" data-toggle="modal" id="ingresarRecorridos" data-target="#inputRecorridos">Ingresar recorridos</button>
   <button type="button" class="btn btn-primary" data-toggle="modal" id="guardarGrafo" data-target="#inputNombreArchivo"
     onclick="">Guardar graphy</button>
   <button type="button" class="btn btn-primary" id="subirGrafo">Subir graphy</button>

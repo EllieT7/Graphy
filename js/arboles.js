@@ -570,8 +570,6 @@ function getLeftNode(idNode){
     return idChild;   
 }
 
-
-///-----
 //---------------------------------------------------------------------------------------------------------
 function cadenaSeparar () {
     var cadena = document.getElementById("cadenaValores").value;
@@ -617,5 +615,95 @@ function habilitarMensaje(mensaje){
     }, 4000);
 }
 
+//---------------------------------------------------------------------------------------------------------
+//Extra
+var pre = [];
+var post = [];
+var inorder = [];
+var cadena = [];
 
-
+function comprobar (){
+    pre = [];
+    post = [];
+    inorder = [];
+    cadena = [];
+    var cadenapre = document.getElementById("cadenaPreOrder").value;
+    pre = cadenapre.split(',');
+    var cadenapost = document.getElementById("cadenaPostOrder").value;
+    post = cadenapost.split(',');
+    var cadenainorder = document.getElementById("cadenaInOrder").value;
+    inorder = cadenainorder.split(',');
+//1,2,3,4,6,9,11,15,17,21,90
+//4,2,1,3,15,9,6,11,21,17,90
+    if(pre.length==post.length && post.length==inorder.length){
+        var c = 0;
+        var menor = 0;
+        var mayor = 0;
+        console.log('Tamanio '+pre.length);
+        while(c<pre.length-1){
+            if(c==0){
+                cadena.push(pre[c]);
+                c++;
+                cadena.push(pre[c]);
+                menor = cadena[c];
+                c++;
+                cadena.push(findDerecho(cadena[0]));
+                mayor = cadena[c];
+                console.log('c '+c);
+            } else {
+                console.log('Mayor '+mayor);
+                console.log('Menor '+menor);
+                c = c + findEntre(menor, mayor);
+                menor = cadena[c];
+                if(cadena.includes(findDerecho(mayor))==false){
+                    cadena.push(findDerecho(mayor));
+                    c++;
+                }
+                mayor = cadena[c];
+            }
+            console.log(cadena);
+            console.log('c '+c);
+        }
+        console.log(cadena);
+    } else {
+        habilitarMensajeRecorridos('Error en los recorridos revise por favor.');
+    }
+}
+function findDerecho(num){
+    var encontrado = post[0];
+    for(i=0; i<post.length-1; i++) {
+        if(post[i+1]==num){
+            encontrado = post[i];
+            break;
+        }
+    }
+    return encontrado;
+}
+function findEntre (menor, mayor){
+    var c = 0;
+    for(i=0; i<pre.length; i++){
+        if(pre[i]==menor){
+            for(j=i+1;j<pre.length;j++){
+                if(pre[j]!=mayor){
+                    cadena.push(pre[j]);
+                    c++;
+                } else {
+                    if(j+1!=pre.length){
+                        cadena.push(pre[j+1]);
+                        c++;
+                    }
+                    break;
+                }
+            }
+            break;
+        }
+    }
+    return c;
+}
+function habilitarMensajeRecorridos(mensaje){
+    $('#mensajeRecorridos').html(mensaje);
+    document.querySelector("#mensajeRecorridos").classList.add('habilitar-mensaje-recorridos-activo');
+    setTimeout(function(){
+        document.querySelector("#mensajeRecorridos").classList.remove('habilitar-mensaje-recorridos-activo');
+    }, 4000);
+}
