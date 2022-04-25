@@ -91,16 +91,18 @@
       <div class="col-md-9">
         <div id="diagram" style="background-color: white;">
           <br>
-          <div id="datos" style="margin-left:2vw;">
-          </div><br>
-          <div id="insertion" style="margin-left:2vw;">
-          </div><br>
-          <div id="selection" style="margin-left:2vw;">
-          </div><br>
-          <div id="merge" style="margin-left:2vw;">
-          </div><br>
-          <div id="shell" style="margin-left:2vw;">
-          </div>
+          <center>
+            <div id="datos" style="margin-left:2vw;">
+            </div><br>
+            <div id="insertion" style="margin-left:2vw;">
+            </div><br>
+            <div id="selection" style="margin-left:2vw;">
+            </div><br>
+            <div id="merge" style="margin-left:2vw;">
+            </div><br>
+            <div id="shell" style="margin-left:2vw;">
+            </div><br>
+          </center>
         </div>
       </div>
     </div>
@@ -149,6 +151,38 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" onclick="agregarNumeros()" >Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Botones -->
+  <div class = "botones">
+    <!-- Guardar graphy -->
+    <center>
+      <button type="button" class="btn btn-primary" data-toggle="modal" id="guardarGrafo" data-target="#inputNombreArchivo" onclick="">Guardar datos</button>
+    <!-- Subir graphy -->
+    <button type="button" class="btn btn-primary" id="subirGrafo">Subir datos</button>
+    <input type="file" id="file-input" style="display: none;"/>
+    <!-- Manual -->
+    <button type="button" class="btn btn-primary" id="descargarManual"><a style="color: white !important;" href="../resources/manuales/pdf/ManualDeUsuario_Ordenamiento.pdf" target="_blank">Manual</a></button>
+    </center>
+  </div>
+  <div class="modal fade" id="inputNombreArchivo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Nombre del archivo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="contactos" class="modal-body">
+          <label style="margin-left:2vw;">Ingrese el nombre con el que desea guardar el archivo:</label>
+          <input style="margin-left:8vw;" type="text" id="nombreArchivo">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="guardarGrafo()">Aceptar</button>
         </div>
       </div>
     </div>

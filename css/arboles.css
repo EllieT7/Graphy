@@ -235,3 +235,13 @@ nav li:hover {
   overflow: auto;
   white-space: nowrap;
 } 
+
+.habilitar-mensaje-recorridos {
+  background-color: rgb(255, 105, 97);
+  color: white;
+  display: none;
+  padding-left: 15px;
+}
+.habilitar-mensaje-recorridos-activo {
+  display: block;
+}
