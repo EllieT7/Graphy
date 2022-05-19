@@ -155,7 +155,7 @@ function funcionFondoCB() {
         bg.style.background = "none";
         bg.style.backgroundColor = "#ffffff"
     } else {
-        bg.style.backgroundImage = "url('./resources/johnson/Imagen1.png')";
+        bg.style.backgroundImage = "url('../resources/images/Imagen1.png')";
     }
 }
 
@@ -173,23 +173,26 @@ function calcularAtributosMinimizar(){
     //Primero validamos que todas las conexiones tengan valores.
     if(validarNumeroTotalConexiones()){
         //Luego validamos que solo exista un nodo final.
-        var ultimoNodo = buscarUltimoNodo();
-        if(ultimoNodo != null){
+        //var ultimoNodo = buscarUltimoNodo();
+        //if(ultimoNodo != null){
             //Ahora validamos la existencia de un nodo inicial.
             var primerNodo = buscarPrimerNodo();
             if(primerNodo != null){
                 ponerValoresCeros();
                 var secuenciaNodos = encontrarSecuencia();
                 calcularAtributosMinimos(secuenciaNodos);
-                console.log(secuenciaNodos);
-                var caminoMinimo = calcularCamino(primerNodo, ultimoNodo, true);
-                agregarInformacionModal(caminoMinimo, 'Camino mínimo');
+                /*console.log(secuenciaNodos);
+                for(contNodos=0;contNodos< secuenciaNodos.length;contNodos++){
+                    console.log(encontrarNodo(secuenciaNodos[contNodos]));
+                }*/
+                var valFlecha = calcularCamino(secuenciaNodos, true);
+                agregarInformacionModal(valFlecha, 'Camino mínimo');
             } else {
                 window.alert("No es posible calcular los atributos, no existe un nodo origen.");    
             }
-        } else {
+        /*} else {
             window.alert("No es posible calcular los atributos si hay más de un nodo final o si hay un nodo suelto.");
-        }
+        }*/
     }
 }
 //Cambia los valores de los atributos de los nodos a cero.
@@ -407,22 +410,26 @@ function calcularAtributosMaximizar(){
     //Primero validamos que todas las conexiones tengan valores.
     if(validarNumeroTotalConexiones()){
         //Luego validamos que solo exista un nodo final.
-        var ultimoNodo = buscarUltimoNodo();
-        if(ultimoNodo != null){
+        //var ultimoNodo = buscarUltimoNodo();
+        //if(ultimoNodo != null){
             //Ahora validamos la existencia de un nodo inicial.
             var primerNodo = buscarPrimerNodo();
             if(primerNodo != null){
                 ponerValoresCeros();
                 var secuenciaNodos = encontrarSecuencia();
                 calcularAtributosMaximos(secuenciaNodos);
-                var caminoMaximo = calcularCamino(primerNodo, ultimoNodo, false);
-                agregarInformacionModal(caminoMaximo, 'Camino máximo');
+                /*console.log(secuenciaNodos);
+                for(contNodos=0;contNodos< secuenciaNodos.length;contNodos++){
+                    console.log(encontrarNodo(secuenciaNodos[contNodos]));
+                }*/
+                var valFlechas = calcularCamino(secuenciaNodos, false);
+                agregarInformacionModal(valFlechas, 'Camino máximo');
             } else {
                 window.alert("No es posible calcular los atributos, no existe un nodo origen.");    
             }
-        } else {
+        /*} else {
             window.alert("No es posible calcular los atributos si hay más de un nodo final o si hay un nodo suelto.");
-        }
+        }*/
     }
 }
 //Funcion para calcular los Atributos.
@@ -449,31 +456,21 @@ function cambiarValorAtributoMaximo(anterior, valor, id){
     }
 }
 //Calcular el camino 
-function calcularCamino(primerNodo, ultimoNodo, min) {
-    var vectorCamino = [];
+function calcularCamino(secNodos, min) {
+    var valoresCamino = [];
     var cantidadNodos = document.getElementsByClassName('control');
-    console.log(cantidadNodos.length);
-    var nodo = ultimoNodo;
-    for(m=1; m<cantidadNodos.length; m++) {
-        if(nodo != primerNodo){
-            vectorCamino.push(nodo);
-            var entradasAlNodo = entradasNodo(nodo);
-            console.log(entradasAlNodo);
-            for(ent=0; ent<entradasAlNodo.length; ent++){
-                if(restarAtributo(nodo, entradasAlNodo[ent])){
-                    cambiarColor(entradasAlNodo[ent].substr(0,36), nodo, parseInt(valorFlecha(entradasAlNodo[ent])),min);
-                    nodo = entradasAlNodo[ent].substr(0, 36);
-                    console.log(encontrarNodo(nodo));
-                    ent = entradasAlNodo.length+1;
-                }
+    for(m=0; m<cantidadNodos.length-1; m++) {
+        var nodo = secNodos[m];
+        var entradasAlNodo = entradasNodo(nodo);
+        for(ent=0; ent<entradasAlNodo.length; ent++){
+            if(restarAtributo(nodo, entradasAlNodo[ent])){
+                cambiarColor(entradasAlNodo[ent].substr(0,36), nodo, parseInt(valorFlecha(entradasAlNodo[ent])), min);
+                valoresCamino.push(parseInt(valorFlecha(entradasAlNodo[ent])));
+                ent = entradasAlNodo.length+1;
             }
-        } else {
-            console.log('Termino');
-            break;
         }
     }
-    vectorCamino.push(primerNodo);
-    return vectorCamino;
+    return valoresCamino;
 }
 
 function cambiarColor(src,trg,valor,min) {
@@ -489,7 +486,6 @@ function cambiarColor(src,trg,valor,min) {
     }else{
         crearNuevaFlechaColor(src, trg, valor,"yellow-connection");
     }
-   
 }
 
 function crearNuevaFlechaColor(src, trg, value, tipo) {
@@ -551,27 +547,18 @@ function estadoInicialConexiones(){
 }
 //-----------------------------------------------------------------------------------------------------------------------------------
 //Función para agregar la información al modal de información
-function agregarInformacionModal(vectorNodos, titulo){
-    var nodos = document.getElementsByClassName('control');
-    var reversa = vectorNodos.reverse();
+function agregarInformacionModal(valoresFlechas, titulo){
     var total = 0;
     let html = `
         </br><p>
         <strong>${titulo}</strong></br>`
-    for(contN=0; contN<reversa.length; contN++){
-        for(cNodo=1; cNodo<nodos.length; cNodo++){
-            if(reversa[contN] == nodos[cNodo].id){
-                var recortarNombreNodo = nodos[cNodo].innerHTML;
-                var nombreNodo = recortarNombreNodo.substr(recortarNombreNodo.indexOf("Nodo"), recortarNombreNodo.length);
-                if(contN != (reversa.length-1)){
-                    html+=`${nombreNodo} -> `
-                } else {
-                    html+=`${nombreNodo}`
-                }
-                var valorAtributo = nodos[cNodo].getElementsByTagName("td");
-                total = total+parseInt(valorAtributo[0].innerHTML);
-            }
+    for(contFl=0; contFl<valoresFlechas.length; contFl++){
+        if(contFl == valoresFlechas.length-1){
+            html+=`${valoresFlechas[contFl]}`
+        } else {
+            html+=`${valoresFlechas[contFl]} + `
         }
+        total = total+parseInt(valoresFlechas[contFl]);
     }
     html+=`</br><strong>Total</strong></br>${total}</br></p>`;
     console.log(html);

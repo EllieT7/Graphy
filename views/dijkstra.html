@@ -5,7 +5,7 @@
 <!--Dentro de la etiqueta <head> va informacion que mayormente el usuario no puede ver.-->
 <head>
   <meta charset="UTF-8">
-  <title>Grafos Puntos de Vacunación</title>
+  <title>Algoritmo de Dijkstra</title>
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cookie&family=Lobster&family=Roboto+Mono&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
@@ -27,26 +27,24 @@
 
   <!--La siguiente etiqueta permite relacionar el archivo htlm con la libreria jsplumb-->
   <script src="../node_modules/jsplumb/dist/js/jsplumb.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
-    integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   
     <!--La siguiente etiqueta permite relacionar el archivo htlm con el css-->
   <link href="./cardsStyle.sass">
-  <link rel="stylesheet" href="../css/djisktra.css">
+  <link rel="stylesheet" href="../css/dijkstra.css">
 
   <!-- Icono -->
-  <link rel="shortcut icon" type="image/x-icon" href="./resources/otros/modelado.ico">
+  <link rel="shortcut icon" type="image/x-icon" href="../resources/modelado.ico">
 </head>
 
 <!--Navegación principal-->
 <nav>
   <ul>
-    <li style="position: absolute; top: 15px; left: 20px; width: 50px;" id="casita"><a href="index.html">
+    <li style="position: absolute; top: 15px; left: 20px; width: 50px;" id="casita"><a href="./index.html">
       <img style="width: 40px;" src="../resources/images/casita.png" alt="atras">
     </a></li>
     <li id="nombreEmpresa">
-      <img src="../resources\images\modelado.png" alt="logo_graphy"style="height: 50px;">Graphy
+      <img src="../resources/modelado.png" alt="logo_graphy"style="height: 50px;">Graphy
     </li>
   </ul>
 </nav>
@@ -78,10 +76,10 @@
           
           <div>
             <br>
-            <div class="flecha"><img src="../resources/images/red_arrow.png" width="30px">Sin atributo</div>
-            <div class="flecha"><img src="../resources/images/green_arrow.png" width="30px">Con atributo</div>
-            <div class="flecha"><img src="../resources/images/blue_arrow.png" width="30px">Camino mínimo</div>
-            <div class="flecha"><img src="../resources/images/yellow_arrow.png" width="30px">Camino máximo</div>
+            <div class="flecha"><img src="../resources/images/red_arrow.png" width="20px">Sin atributo</div>
+            <div class="flecha"><img src="../resources/images/green_arrow.png" width="20px">Con atributo</div>
+            <div class="flecha"><img src="../resources/images/blue_arrow.png" width="20px">Camino mínimo</div>
+            <div class="flecha"><img src="../resources/images/yellow_arrow.png" width="20px">Camino máximo</div>
           </div>
         </div>
       </div>
@@ -288,9 +286,7 @@
       var flag = false;
       $(".jtk-endpoint").remove();
       $(".jtk-connector").remove();
-      // if(tieneHolguras()){
-      //   flag = true;
-      // }
+      
       $(".jtk-overlay").remove();  
       instance.draggable($('.control'));
       agregarEndPoints();
