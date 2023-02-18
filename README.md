@@ -1,13 +1,13 @@
 # <img width="4%" src="https://user-images.githubusercontent.com/87090365/219901339-d6ddecfd-a5a3-4544-8599-2865e58c9f0f.png"> Graphy 
 <img align="right" width="300" src="https://user-images.githubusercontent.com/87090365/219901304-35979fa7-23af-46cd-9739-bb72e6dfa2f0.png">
 
-
-
 ### Tu graficador 😉
 
 Aplicación web :computer: | Grafos 📍 | Algoritmos matemáticos 🧮
 
 By Micaela Gordillo, Naomi Tacachira :woman_technologist:
+
+<br>
 
 ## Sobre Graphy :bulb:
 💙 Graphy es una aplicación web que te permite crear grafos e implementar sus algoritmos de manera sencilla y rápida 💚 
@@ -37,7 +37,6 @@ Con Graphy puedes guardar tus proyectos de manera local para continuar editándo
 **⭐️ Página Inicial**
 
 ![Captura de pantalla (13)](https://user-images.githubusercontent.com/87090365/219900982-10f70da8-1f3a-4465-9b20-2c0b1dadfa95.png)
-
 
 ---
 **⭐ Área de trabajo**
