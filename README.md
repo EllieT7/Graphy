@@ -5,7 +5,7 @@
 
 Aplicación web :computer: | Grafos 📍 | Algoritmos matemáticos 🧮
 
-By Micaela Gordillo, Naomi Tacachira :woman_technologist:
+By Micaela Gordillo, Naomi Tacachira, Carla Valencia, Alejandra Pacheco :woman_technologist:
 
 <br>
 
@@ -31,6 +31,10 @@ Con Graphy puedes guardar tus proyectos de manera local para continuar editándo
 ## Social media :mailbox_with_no_mail:
 [![Twitter URL](https://img.shields.io/twitter/url?color=%2362D6E6&label=Naomi&logo=instagram&logoColor=%2362D6E6&style=flat-square&url=https%3A%2F%2Fwww.instagram.com%2Falejorc_)](https://www.instagram.com/ellieee_777/)
 [![Twitter URL](https://img.shields.io/twitter/url?color=%2362D6E6&label=Micaela&logo=instagram&logoColor=%2362D6E6&style=flat-square&url=https%3A%2F%2Fwww.instagram.com%2Falejorc_)](https://www.instagram.com/micaa_ga/)
+[![Twitter URL](https://img.shields.io/twitter/url?color=%2362D6E6&label=Alejandra&logo=instagram&logoColor=%2362D6E6&style=flat-square&url=https%3A%2F%2Fwww.instagram.com%2Falejorc_)](https://www.instagram.com/ale_pacheco1812/)
+[![Twitter URL](https://img.shields.io/twitter/url?color=%2362D6E6&label=Carla&logo=instagram&logoColor=%2362D6E6&style=flat-square&url=https%3A%2F%2Fwww.instagram.com%2Falejorc_)]()
+
+
 
 ## Capturas de la aplicación :camera_flash:
 
