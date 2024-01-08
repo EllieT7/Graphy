@@ -29,7 +29,7 @@ No te preocupes, Graphy se encarga de eso.
 Con Graphy puedes guardar tus proyectos de manera local para continuar editándolos en el momento que quieras 🤗.
 
 ## Social media :mailbox_with_no_mail:
-[![Twitter URL](https://img.shields.io/twitter/url?color=%2362D6E6&label=Naomi&logo=instagram&logoColor=%2362D6E6&style=flat-square&url=https%3A%2F%2Fwww.instagram.com%2Falejorc_)](https://www.instagram.com/ellieee_777/)
+[![Twitter URL](https://img.shields.io/twitter/url?color=%2362D6E6&label=Naomi&logo=instagram&logoColor=%2362D6E6&style=flat-square&url=https%3A%2F%2Fwww.instagram.com%2Falejorc_)](https://www.instagram.com/elliet7_/)
 [![Twitter URL](https://img.shields.io/twitter/url?color=%2362D6E6&label=Micaela&logo=instagram&logoColor=%2362D6E6&style=flat-square&url=https%3A%2F%2Fwww.instagram.com%2Falejorc_)](https://www.instagram.com/micaa_ga/)
 [![Twitter URL](https://img.shields.io/twitter/url?color=%2362D6E6&label=Alejandra&logo=instagram&logoColor=%2362D6E6&style=flat-square&url=https%3A%2F%2Fwww.instagram.com%2Falejorc_)](https://www.instagram.com/ale_pacheco1812/)
 [![Twitter URL](https://img.shields.io/twitter/url?color=%2362D6E6&label=Carla&logo=instagram&logoColor=%2362D6E6&style=flat-square&url=https%3A%2F%2Fwww.instagram.com%2Falejorc_)]()
